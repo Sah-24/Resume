@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Header, HTTPException
 from dotenv import load_dotenv
+import tempfile
 import os
 
 from pipeline import run_pipeline
@@ -22,7 +23,13 @@ def match_resume(
     job_description: str,
     x_api_key: str = Header(...)
 ):
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+        tmp.write(await file.read())
+        resume_path = tmp.name
+        
     verify_api_key(x_api_key)
-
+    
+    os.remove(resume_path)
     result = run_pipeline(resume_path, job_description)
     return result
+
