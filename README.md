@@ -33,4 +33,12 @@ Built for hackathon use with clean ML logic, API access, and Streamlit UI.
 ---
 
 ## 📁 Project Structure
-
+resume-skill-matcher/
+├── app.py # Streamlit UI
+├── api.py # FastAPI backend
+├── pipeline.py # Core ML pipeline
+├── utils.py # Text & PDF utilities
+├── skills.py # Skill config & thresholds
+├── requirements.txt
+├── README.md
+└── .gitignore
